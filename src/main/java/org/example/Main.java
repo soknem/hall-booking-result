@@ -239,6 +239,7 @@ public class Main {
         System.out.print("\tEnter number of column: ");
 
         column = scanner.nextInt();
+
         System.out.println("\n");
 
         //init size of array
