@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -204,6 +206,24 @@ public class Main {
         line();
     }
 
+    static String validate(String message,String regex){
+
+        do{
+            System.out.print(message);
+
+            String input = scanner.nextLine();
+
+            Pattern pattern = Pattern.compile(regex);
+
+            Matcher matcher = pattern.matcher(input);
+
+            if(matcher.matches()){
+                return  input;
+            }
+        }while (true);
+
+    }
+
     public static void main(String[] args) {
 
 
@@ -214,9 +234,10 @@ public class Main {
         System.out.println("row= "+row);
 
         System.out.println("\n");
-        System.out.print("\tEnter number of row: ");
-        row = scanner.nextInt();
+
+        row = Integer.parseInt( validate("\tEnter number of row: ","[1-9]|1[0-9]|2[0-5]"));
         System.out.print("\tEnter number of column: ");
+
         column = scanner.nextInt();
         System.out.println("\n");
 
@@ -227,16 +248,17 @@ public class Main {
         //select option
         do {
             showMenu();
-            System.out.print("Please Select Option: ");
+            System.out.print(" ");
             scanner.nextLine();
-            String option = scanner.nextLine().toUpperCase();
+            String option = validate("Please Select Option:","[a-fA-F]").toUpperCase();
             switch (option) {
                 case "A" -> booking();
                 case "B" -> showHall();
                 case "C" -> showTime();
                 case "D" -> reboot();
-                case "E" -> System.out.println("option E");
+                case "E" -> showHistory();
                 case "F" -> exit();
+                case "Z"-> validate("Enter phone number: ","[0-9]{2}[a-zA-Z]{2}");
                 default -> System.out.println("Please select option A to F");
             }
 
