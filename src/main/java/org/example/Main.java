@@ -242,7 +242,6 @@ public class Main {
 
         System.out.println("\n");
 
-
         //init size of array
         init();
 
